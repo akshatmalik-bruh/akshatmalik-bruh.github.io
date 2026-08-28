@@ -62,7 +62,9 @@ export default function Github() {
             FOURTH_QUARTILE: 4,
           };
 
-          const validContributions = flattenedContributions
+          const validContributions: ContributionItem[] = (
+            flattenedContributions as Record<string, unknown>[]
+          )
             .map((item: Record<string, unknown>) => {
               if (typeof item !== 'object' || !item || !item.date) return null;
 
@@ -81,16 +83,16 @@ export default function Github() {
 
               return { date, count, level };
             })
-            .filter(
-              (item: ContributionItem | null): item is ContributionItem =>
-                item !== null,
-            );
+            .filter((item): item is ContributionItem => item !== null);
 
           if (validContributions.length > 0) {
-            validContributions.sort((a, b) => a.date.localeCompare(b.date));
+            validContributions.sort(
+              (a: ContributionItem, b: ContributionItem) =>
+                a.date.localeCompare(b.date),
+            );
 
             const total = validContributions.reduce(
-              (sum, item) => sum + item.count,
+              (sum: number, item: ContributionItem) => sum + item.count,
               0,
             );
             setTotalContributions(total);
