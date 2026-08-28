@@ -1,0 +1,72 @@
+---
+title: 'I built an MCP server to share AI context across IDEs'
+description: '400 npm downloads in 10 hours told me I wasn’t the only one frustrated by cross-IDE context loss.'
+image: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*vRl_GnmycklVMB0-4Sbetw.jpeg'
+tags: ['MCP', 'Open Source', 'Node.js', 'AI Agents', 'Developer Tools']
+date: '2026-05-31'
+readTime: '4 min read'
+mediumUrl: 'https://medium.com/@akshatf8lmalik/i-built-an-mcp-server-to-share-ai-context-across-ides-ab63a63727bc'
+isPublished: true
+---
+
+## The Real Frustration
+
+Last month I started an internship at a startup where I discovered a major shift in modern coding workflows. They don't just need manual coders; they need developers who can direct AI agents effectively. Context engineering is what truly matters.
+
+As I was assigned high-priority full-stack tickets, I spent significant time across multiple IDEs—Antigravity, Cursor, and VS Code. And that's when the real frustration hit.
+
+Since most features required full-stack changes across multiple files, my context window or token limit in a particular IDE would frequently expire while I was still planning or mid-implementation.
+
+Whenever I needed to switch IDEs to continue the task, I had to rebuild the AI's context from scratch, often wasting **20–30% of the available tokens** just getting the new agent back up to speed.
+
+In a fast-paced environment where you are expected to ship features under tight deadlines, even a minor context loss or AI hallucination can have a costly impact.
+
+That’s the frustration that pushed me to build a solution.
+
+---
+
+## The Solution: Chat-Relay-MCP
+
+I built an **MCP (Model Context Protocol) server** that acts as a shared memory layer between IDEs.
+
+The workflow is simple:
+
+1. While interacting with an AI agent, developers can save the active conversation context using a single tool call.
+2. Project dependencies, tech stack snapshots, and explicit developer rules are saved automatically.
+3. Once saved, this context can be retrieved inside another IDE (e.g. switching from Cursor to VS Code or Antigravity), allowing developers to continue exactly where they left off without rebuilding context from scratch.
+
+After finishing the initial version, I published it on npm so a few friends could try it out:
+
+```bash
+npx chat-relay-mcp
+```
+
+The next morning, I checked the package page and noticed it had already crossed **400+ downloads within 10 hours**. That was a huge validation that I wasn't the only developer facing this exact friction.
+
+---
+
+## What is MCP (Model Context Protocol)?
+
+Just like HTTP standardizes communication between web clients and servers, **MCP (Model Context Protocol)** standardizes how AI applications and agents interact with external tools, databases, APIs, and local services.
+
+Instead of building custom integrations for every individual AI editor, you build an MCP server once according to the standard, and any MCP-compliant AI application (Claude, Cursor, Antigravity, VS Code) can connect to it seamlessly.
+
+---
+
+## Architecture Components
+
+The MCP architecture consists of three main components:
+
+1. **The MCP Host:** The user-facing application (e.g. Cursor, VS Code, Antigravity) containing an AI agent.
+2. **The MCP Client:** An internal connection layer inside the host responsible for establishing communication with the server.
+3. **The MCP Server:** The backend server we develop. It exposes tools and resources, handling local storage or API integrations.
+
+---
+
+## Conclusion
+
+By leveraging the open MCP standard, **chat-relay-mcp** enables zero-friction context transfer across any AI-powered editor. Check out the project on npm:
+
+```bash
+npm install -g chat-relay-mcp
+```

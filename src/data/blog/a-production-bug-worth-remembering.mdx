@@ -1,0 +1,103 @@
+---
+title: 'A Production Bug Worth Remembering!'
+description: 'Optimized a Page Load Time from 10 Seconds to 250 ms — A Serious (and Funny) Case Study'
+image: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/0*Fx8zpHUyMasqIP9q.png'
+tags: ['JavaScript', 'NestJS', 'Coding', 'Case Study']
+date: '2026-07-04'
+readTime: '3 min read'
+mediumUrl: 'https://medium.com/@akshatf8lmalik/a-production-bug-worth-remembering-3bd0b636608e'
+isPublished: true
+---
+
+During my recent internship, there was a page on the admin side that was responsible for retrieving account information for users enrolled on the platform. In production, the page took around 10 seconds to load.
+
+The issue had been known for some time, but because several important features were being rolled out, it was temporarily parked.
+
+Unfortunately, parking the issue led to a much bigger problem.
+
+**The server crashed.**
+
+One morning, while clients were actively using the platform, the website started crashing. AWS monitoring showed significant memory plateaus. Nobody initially understood the root cause until a friend and I were assigned to investigate it.
+
+As we began debugging, we discovered that the issue originated from the Accounts page itself.
+
+---
+
+## The Investigation
+
+Opening the Network tab revealed something interesting. The pagination on that page wasn’t working, which was strange because pagination was already implemented. The query parameters were being sent correctly, and after comparing them with the expected params, everything seemed perfectly fine.
+
+However, the response payload told a completely different story.
+
+Instead of returning the first 25 records, the API was returning **every single record**.
+
+That led us to inspect the backend service where the database query was being built. We found the following condition responsible for applying pagination:
+
+```javascript
+if (query.page && query.rows) {
+  // add LIMIT and OFFSET
+}
+```
+
+And that’s when the bug caught our attention.
+
+---
+
+## The Falsy Trap
+
+The issue was **JavaScript’s interpretation of falsy values**.
+
+As we know, falsy values are values that evaluate to `false` in a boolean context. The eight falsy values in JavaScript are:
+
+- `false`
+- `0`
+- `-0`
+- `0n`
+- `""` (empty string)
+- `null`
+- `undefined`
+- `NaN`
+
+Since `0` is a falsy value, whenever the page was loaded with the request:
+
+```http
+page=0&rows=25
+```
+
+The condition `query.page` evaluated to `false` (because `0` is falsy), causing the pagination logic to be skipped entirely!
+
+As a result, instead of returning just 25 records, the backend returned all **100,000–200,000 records** in a single database call.
+
+---
+
+## The Crash Cascade
+
+The problem wasn’t just that the page took around 10 seconds to display the first 25 records. The remaining data continued loading in the background without the user even realizing it.
+
+Even if a user opened the Accounts page only once, the request continued consuming server memory and resources. As users grew impatient and refreshed the page multiple times, more and more expensive queries were triggered simultaneously, eventually causing memory plateaus and leading to the production server crashing.
+
+---
+
+## The Fix
+
+The fix was surprisingly small:
+
+```javascript
+if (query.page != null && query.rows != null) {
+  // add LIMIT and OFFSET
+}
+```
+
+We added a strict null check to see if the parameters were not empty, and that was all!
+
+Once the fix was deployed, the page load time dropped from **10 seconds to just 250 ms**.
+
+*(Could have made for a pretty good open-source bounty!)*
+
+---
+
+## Conclusion
+
+It’s crazy how such a tiny bug resulted in such a massive performance issue. A basic JavaScript concept that I generally took for granted while learning it ended up affecting the performance of an entire production system.
+
+For me, it was an incredible learning experience and one I’ll probably never forget.

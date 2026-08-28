@@ -1,0 +1,116 @@
+---
+title: 'Do you really know Docker?'
+description: 'Understand the features of Docker, namespaces, cgroups, and containerization fundamentals.'
+image: 'https://miro.medium.com/v2/resize:fit:1100/format:webp/1*hn8AoZNsooJ_zclqz0NR6g.jpeg'
+tags: ['Docker', 'Software Development', 'DevOps', 'Containers']
+date: '2026-06-14'
+readTime: '5 min read'
+mediumUrl: 'http://medium.com/@akshatf8lmalik/do-you-really-know-docker-b0dc6db94c05'
+isPublished: true
+---
+
+## Introduction
+
+Ever wondered why Docker is not natively supported on Windows? What does “containerization” actually mean—the term we talk about every day? What exactly is it? If you think this is a feature that didn’t exist before Docker, then you are completely wrong.
+
+After reading this article, you will understand the interesting story behind Docker and the real reason why it is so widely used today.
+
+---
+
+## What is a Container?
+
+Docker is a tool that “containerizes” your application. This is a very common term that we associate with Docker, but in reality, it is not just an English word used to help you visualize the concept—it represents an actual computer science concept.
+
+**Containerization means running your application as an isolated process inside your computer’s operating system.** A container generally contains the configuration files, dependencies, libraries, and runtime required to run an application.
+
+Now, if a container is just a process, why doesn’t Docker run natively on Windows the same way it does on Linux?
+
+The answer lies in **Isolation**.
+
+Linux has a built-in resource, file system, and network isolation system which derived this concept called containerization. Containers internally work on two principles:
+
+1. **Namespaces**
+2. **Control Groups (cgroups)**
+
+These are parts of the Linux Kernel that make file system and resource isolation a reality. The Wikipedia definition of a Namespace is:
+
+> *“Namespaces are a feature of the Linux kernel that partitions kernel resources such that one set of processes sees one set of resources while another set of processes sees a different set of resources.”*
+
+Containers are built upon namespaces alongside **cgroups** (control groups), which are responsible for isolating control-level resources (CPU, RAM, I/O) for each isolated process.
+
+Since namespaces and cgroups are Linux kernel features, Docker was originally designed around Linux containers. Windows does not provide these exact kernel mechanisms, which is why Docker cannot run Linux containers natively on Windows. Instead, Docker Desktop uses a lightweight Linux virtual machine (through WSL 2 or Hyper-V) and runs the containers inside that environment.
+
+---
+
+## What does Docker actually do?
+
+We all know how difficult it can be to write software without using libraries or frameworks. It often involves a lot of boilerplate code that developers repeatedly write. For example, creating an HTTP server in Node.js using only the built-in `http` module can be tedious, whereas frameworks like Express make the process much simpler and more intuitive.
+
+For a similar reason, Docker became extremely popular. Docker provided a unified and developer-friendly way of containerizing applications without requiring developers to deal directly with low-level details like manual creation of namespaces and cgroups. Instead of worrying about the underlying implementation, developers could simply define their application’s environment using a `Dockerfile`, specifying dependencies, runtimes, versions, configurations, and application files. Docker then takes care of packaging and running everything consistently.
+
+---
+
+## Portability: "It Works on My Machine"
+
+However, ease of use was not the only reason Docker became successful. Docker also solved one of the biggest problems in software development and deployment: **Portability**.
+
+Before Docker, deploying an application to a cloud provider or a server often involved manually setting up the environment. Developers had to install the required runtimes, libraries, dependencies, and configuration files on the target machine. Even a small difference in dependency versions or a mistake during setup could cause the application to behave differently from the development environment.
+
+Docker solved this problem by packaging the entire application environment into a **Docker image**. A Docker image contains everything required to run an application:
+
+- Code
+- Dependencies & Libraries
+- Configuration files
+- Runtime environment
+
+This image can then be shared and executed consistently across different machines.
+
+Another major advantage is that containers are significantly more lightweight than virtual machines. Unlike virtual machines, containers share the host operating system’s kernel, making them faster to start and far more resource-efficient.
+
+---
+
+## Global Sharing & Orchestration
+
+One of Docker’s most powerful features is the ability to share applications globally through Docker images via container registries like **Docker Hub**.
+
+Once you create an image for your application, it can be uploaded to Docker Hub. Developers anywhere in the world can download and run the exact same image using a simple command:
+
+```bash
+docker pull <image-name>
+```
+
+This approach is especially useful for commonly used services such as Redis, PostgreSQL, MongoDB, MySQL, and many others.
+
+This is also why many projects contain both a `Dockerfile` and a `compose.yaml` file:
+
+- **Dockerfile:** Describes how to build the image for your own application.
+- **Compose (compose.yaml):** Defines all the services required by the application and how they should work together.
+
+For example, a web application stack might use:
+
+```yaml
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+  redis:
+    image: redis:alpine
+  postgres:
+    image: postgres:15
+```
+
+Running a single command:
+
+```bash
+docker compose up
+```
+
+builds the required images, pulls external images, creates containers, configures networking, and starts the entire application stack effortlessly.
+
+---
+
+## Conclusion
+
+Docker is a tool that makes containerization and its distribution very easy, which is why it is one of the most relevant tools in modern software development. Being able to focus only on code and worry less about setup-related issues is a huge relief for developers and why Docker remains a monumental tool.
