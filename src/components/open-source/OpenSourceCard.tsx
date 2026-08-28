@@ -34,13 +34,13 @@ export function OpenSourceCard({ contribution }: OpenSourceCardProps) {
                   unoptimized
                 />
               </div>
-              <span className="font-mono text-xs font-semibold tracking-wide text-foreground/80">
+              <span className="text-foreground/80 font-mono text-xs font-semibold tracking-wide">
                 {contribution.repo}
               </span>
-              <span className="text-xs text-muted-foreground">• {contribution.prNum}</span>
+              <span className="text-muted-foreground text-xs">
+                • {contribution.prNum}
+              </span>
             </div>
-
-
           </div>
 
           {/* PR Title */}
@@ -48,7 +48,7 @@ export function OpenSourceCard({ contribution }: OpenSourceCardProps) {
             <Link
               href={contribution.link}
               target="_blank"
-              className="text-base font-bold text-foreground transition-colors hover:text-primary md:text-lg"
+              className="text-foreground hover:text-primary text-base font-bold transition-colors md:text-lg"
             >
               {contribution.title}
             </Link>
@@ -57,7 +57,7 @@ export function OpenSourceCard({ contribution }: OpenSourceCardProps) {
                 <Link
                   href={contribution.link}
                   target="_blank"
-                  className="mt-1 flex-shrink-0 text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground mt-1 flex-shrink-0 transition-colors"
                 >
                   <Github className="size-4" />
                 </Link>
@@ -67,16 +67,15 @@ export function OpenSourceCard({ contribution }: OpenSourceCardProps) {
           </div>
 
           {/* Description */}
-          <p className="text-sm leading-relaxed text-secondary">
+          <p className="text-secondary text-sm leading-relaxed">
             {contribution.description}
           </p>
 
-          {/* Impact Tag & Timeline */}
+          {/* Tech Tag */}
           <div className="mt-1 flex items-center justify-between border-t border-dashed border-black/10 pt-3 dark:border-white/10">
             <span className="font-mono text-xs font-medium text-emerald-600 dark:text-emerald-400">
-              {contribution.impact}
+              {contribution.tech}
             </span>
-            <span className="text-xs text-muted-foreground">{contribution.timeline}</span>
           </div>
         </div>
       </div>
