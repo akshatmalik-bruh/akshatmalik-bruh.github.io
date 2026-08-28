@@ -39,24 +39,24 @@ export default function Hero() {
         <div
           onClick={toggleMusic}
           style={{ transform: `rotate(${rotationAngle}deg)` }}
-          className="relative size-24 cursor-pointer overflow-hidden rounded-full border-2 border-primary/20 p-1 shadow-2xl transition-transform duration-75 ease-linear hover:scale-105 active:scale-95"
+          className="border-primary/20 relative size-24 cursor-pointer overflow-hidden rounded-full border-2 p-1 shadow-2xl transition-transform duration-75 ease-linear hover:scale-105 active:scale-95"
         >
           <Image
             src={avatar}
             alt="hero avatar"
             width={96}
             height={96}
-            className="size-full rounded-full object-cover select-none pointer-events-none"
+            className="pointer-events-none size-full rounded-full object-cover select-none"
           />
         </div>
 
         {/* Nothing OS Style Borderless Fade Capsule */}
         <div
           className={cn(
-            'flex items-center gap-2 font-mono text-[9.5px] tracking-[0.2em] uppercase text-foreground/75 transition-all duration-500 ease-out select-none',
+            'text-foreground/75 flex items-center gap-2 font-mono text-[9.5px] tracking-[0.2em] uppercase transition-all duration-500 ease-out select-none',
             musicState === 'idle'
-              ? 'opacity-0 scale-95 pointer-events-none'
-              : 'opacity-100 scale-100',
+              ? 'pointer-events-none scale-95 opacity-0'
+              : 'scale-100 opacity-100',
           )}
         >
           <span>
@@ -74,12 +74,12 @@ export default function Hero() {
         </h1>
 
         {/* Subheading */}
-        <h2 className="text-lg font-semibold text-foreground/90 md:text-xl">
+        <h2 className="text-foreground/90 text-lg font-semibold md:text-xl">
           {subtitle}
         </h2>
 
         {/* Tagline */}
-        <p className="mt-1 text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p className="text-muted-foreground mt-1 text-base leading-relaxed md:text-lg">
           {tagline}
         </p>
       </div>
@@ -95,7 +95,7 @@ export default function Hero() {
               <Button
                 key={index}
                 variant={button.variant as 'outline' | 'default'}
-                className={cn('inset-shadow-indigo-500 cursor-pointer')}
+                className={cn('cursor-pointer inset-shadow-indigo-500')}
                 onClick={handleCopyEmail}
                 track={{
                   name: 'button_click',
@@ -113,7 +113,7 @@ export default function Hero() {
               key={index}
               variant={button.variant as 'outline' | 'default'}
               asChild
-              className={cn('inset-shadow-indigo-500 cursor-pointer')}
+              className={cn('cursor-pointer inset-shadow-indigo-500')}
               track={{
                 name: 'button_click',
                 data: {
@@ -144,8 +144,8 @@ export default function Hero() {
                 target="_blank"
                 className="hover:bg-accent flex items-center justify-center rounded-lg border p-2 text-neutral-500 transition-colors dark:text-neutral-400"
                 track={{
-                  name: 'social_link_click',
-                  data: { platform: social.name, location: 'hero' },
+                  name: 'external_link_click',
+                  data: { url: social.href, label: social.name },
                 }}
               >
                 {social.icon}
