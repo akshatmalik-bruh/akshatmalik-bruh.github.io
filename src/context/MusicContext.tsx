@@ -86,25 +86,22 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
   }, [fadeInAudio, startSpin]);
 
   const hasTriggeredRef = useRef<boolean>(false);
+  const playWithFadeInRef = useRef(playWithFadeIn);
+  useEffect(() => {
+    playWithFadeInRef.current = playWithFadeIn;
+  }, [playWithFadeIn]);
 
   useEffect(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio('/assets/OneMoreLight.mp3');
       audioRef.current.loop = true;
       audioRef.current.volume = 0;
-
-      audioRef.current.addEventListener('error', () => {
-        if (audioRef.current) {
-          audioRef.current.src =
-            'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3';
-        }
-      });
     }
 
     const handleAutoPlay = () => {
       if (hasTriggeredRef.current) return;
       hasTriggeredRef.current = true;
-      playWithFadeIn();
+      playWithFadeInRef.current();
       window.removeEventListener('click', handleAutoPlay);
       window.removeEventListener('keydown', handleAutoPlay);
       window.removeEventListener('scroll', handleAutoPlay);
@@ -125,7 +122,6 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener('touchstart', handleAutoPlay);
       window.removeEventListener('touchend', handleAutoPlay);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const stopSpinGracefully = useCallback(() => {
