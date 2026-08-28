@@ -15,11 +15,13 @@ export default function OpenSourceSection() {
   useEffect(() => {
     async function fetchPRCount() {
       try {
-        const res = await fetch('/api/github-prs');
+        const res = await fetch(
+          'https://api.github.com/search/issues?q=author:akshatmalik-bruh+type:pr+is:merged',
+        );
         if (res.ok) {
           const data = await res.json();
-          if (typeof data.totalMergedPRs === 'number') {
-            setMergedCount(data.totalMergedPRs);
+          if (typeof data.total_count === 'number') {
+            setMergedCount(data.total_count);
           }
         }
       } catch (err) {

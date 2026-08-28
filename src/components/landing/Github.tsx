@@ -44,11 +44,10 @@ export default function Github() {
   useEffect(() => {
     async function fetchData() {
       try {
-        setIsLoading(true);
         const response = await fetch(
-          `/api/github-contributions?username=${githubConfig.username}`,
+          `https://github-contributions-api.jogruber.de/v4/${githubConfig.username}?y=last`,
         );
-        const data: { contributions?: unknown[] } = await response.json();
+        const data = await response.json();
 
         if (data?.contributions && Array.isArray(data.contributions)) {
           const flattenedContributions = data.contributions.flat();
