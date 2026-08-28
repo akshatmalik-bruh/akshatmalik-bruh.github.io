@@ -1,6 +1,13 @@
 'use client';
 
-import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 interface MusicContextType {
   musicState: 'idle' | 'playing' | 'stopping';
@@ -11,7 +18,9 @@ interface MusicContextType {
 const MusicContext = createContext<MusicContextType | null>(null);
 
 export function MusicProvider({ children }: { children: React.ReactNode }) {
-  const [musicState, setMusicState] = useState<'idle' | 'playing' | 'stopping'>('idle');
+  const [musicState, setMusicState] = useState<'idle' | 'playing' | 'stopping'>(
+    'idle',
+  );
   const [rotationAngle, setRotationAngle] = useState<number>(0);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -20,26 +29,29 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
   const angleRef = useRef<number>(0);
   const isStoppingRef = useRef<boolean>(false);
 
-  const fadeInAudio = useCallback((targetVolume: number = 0.5, durationMs: number = 2000) => {
-    if (!audioRef.current) return;
-    if (fadeFrameRef.current) cancelAnimationFrame(fadeFrameRef.current);
-    audioRef.current.volume = 0;
-    const startTime = performance.now();
+  const fadeInAudio = useCallback(
+    (targetVolume: number = 0.5, durationMs: number = 2000) => {
+      if (!audioRef.current) return;
+      if (fadeFrameRef.current) cancelAnimationFrame(fadeFrameRef.current);
+      audioRef.current.volume = 0;
+      const startTime = performance.now();
 
-    const fadeStep = (now: number) => {
-      if (!audioRef.current || isStoppingRef.current) return;
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / durationMs, 1);
+      const fadeStep = (now: number) => {
+        if (!audioRef.current || isStoppingRef.current) return;
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / durationMs, 1);
 
-      audioRef.current.volume = targetVolume * progress;
+        audioRef.current.volume = targetVolume * progress;
 
-      if (progress < 1) {
-        fadeFrameRef.current = requestAnimationFrame(fadeStep);
-      }
-    };
+        if (progress < 1) {
+          fadeFrameRef.current = requestAnimationFrame(fadeStep);
+        }
+      };
 
-    fadeFrameRef.current = requestAnimationFrame(fadeStep);
-  }, []);
+      fadeFrameRef.current = requestAnimationFrame(fadeStep);
+    },
+    [],
+  );
 
   const startSpin = useCallback(() => {
     if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
@@ -70,7 +82,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
         startSpin();
         fadeInAudio(0.5, 2000);
       })
-      .catch(() => { });
+      .catch(() => {});
   }, [fadeInAudio, startSpin]);
 
   useEffect(() => {
@@ -93,11 +105,15 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener('click', handleAutoPlay);
       window.removeEventListener('keydown', handleAutoPlay);
       window.removeEventListener('scroll', handleAutoPlay);
+      window.removeEventListener('touchstart', handleAutoPlay);
+      window.removeEventListener('touchend', handleAutoPlay);
     };
 
     window.addEventListener('click', handleAutoPlay);
     window.addEventListener('keydown', handleAutoPlay);
     window.addEventListener('scroll', handleAutoPlay);
+    window.addEventListener('touchstart', handleAutoPlay, { passive: true });
+    window.addEventListener('touchend', handleAutoPlay, { passive: true });
 
     playWithFadeIn();
 
@@ -105,6 +121,8 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener('click', handleAutoPlay);
       window.removeEventListener('keydown', handleAutoPlay);
       window.removeEventListener('scroll', handleAutoPlay);
+      window.removeEventListener('touchstart', handleAutoPlay);
+      window.removeEventListener('touchend', handleAutoPlay);
     };
   }, [playWithFadeIn]);
 
@@ -179,7 +197,7 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
       const durationMs = 1500;
       const startTime = performance.now();
 
-      audioRef.current.play().catch(() => { });
+      audioRef.current.play().catch(() => {});
 
       const fadeStep = (now: number) => {
         if (!audioRef.current || isStoppingRef.current) return;
