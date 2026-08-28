@@ -145,7 +145,11 @@ export default function Hero() {
                 className="hover:bg-accent flex items-center justify-center rounded-lg border p-2 text-neutral-500 transition-colors dark:text-neutral-400"
                 track={{
                   name: 'external_link_click',
-                  data: { url: social.href, label: social.name },
+                  data: {
+                    url: social.href,
+                    text: social.name,
+                    location: 'hero',
+                  },
                 }}
               >
                 {social.icon}
