@@ -21,7 +21,9 @@ type ContributionItem = {
 };
 
 // Filter contributions to show from March of current year to present
-function filterFromMarch(contributions: ContributionItem[]): ContributionItem[] {
+function filterFromMarch(
+  contributions: ContributionItem[],
+): ContributionItem[] {
   const currentYear = new Date().getFullYear();
   const marchDate = new Date(currentYear, 2, 1); // March 1st
 
@@ -79,7 +81,10 @@ export default function Github() {
 
               return { date, count, level };
             })
-            .filter((item): item is ContributionItem => item !== null);
+            .filter(
+              (item: ContributionItem | null): item is ContributionItem =>
+                item !== null,
+            );
 
           if (validContributions.length > 0) {
             validContributions.sort((a, b) => a.date.localeCompare(b.date));
@@ -178,8 +183,8 @@ export default function Github() {
           </div>
         ) : (
           <div className="relative overflow-hidden">
-            <div className="bg-background/50 relative rounded-lg border border-dashed border-black/20 p-6 backdrop-blur-sm dark:border-white/10 flex justify-center">
-              <div className="w-full overflow-x-auto pb-1 flex justify-center">
+            <div className="bg-background/50 relative flex justify-center rounded-lg border border-dashed border-black/20 p-6 backdrop-blur-sm dark:border-white/10">
+              <div className="flex w-full justify-center overflow-x-auto pb-1">
                 <ActivityCalendar
                   data={contributions}
                   blockSize={12}
