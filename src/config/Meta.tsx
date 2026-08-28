@@ -68,13 +68,7 @@ export const pageMetadata: Record<string, PageMeta> = {
     title: 'Projects - Akshat Malik',
     description:
       'Discover my projects in AI, RAG systems, MCP servers, and full stack applications.',
-    keywords: [
-      'projects',
-      'portfolio',
-      'mcp',
-      'rag',
-      'ai',
-    ],
+    keywords: ['projects', 'portfolio', 'mcp', 'rag', 'ai'],
     ogImage: '/assets/logo.jpeg',
     twitterCard: 'summary_large_image',
   },
@@ -82,12 +76,7 @@ export const pageMetadata: Record<string, PageMeta> = {
     title: 'Open Source Contributions - Akshat Malik',
     description:
       'Merged PRs and open source contributions across repowise-dev, better-auth, corsairdev, and more.',
-    keywords: [
-      'open source',
-      'contributions',
-      'pull requests',
-      'github',
-    ],
+    keywords: ['open source', 'contributions', 'pull requests', 'github'],
     ogImage: '/assets/logo.jpeg',
     twitterCard: 'summary_large_image',
   },
@@ -108,12 +97,7 @@ export const pageMetadata: Record<string, PageMeta> = {
   '/resume': {
     title: 'Resume - Akshat Malik',
     description: `View and download Akshat Malik's resume.`,
-    keywords: [
-      'resume',
-      'cv',
-      'professional',
-      'skills',
-    ],
+    keywords: ['resume', 'cv', 'professional', 'skills'],
     ogImage: '/assets/logo.jpeg',
     twitterCard: 'summary',
   },
@@ -167,7 +151,7 @@ export function generateMetadata(pathname: string) {
         index: true,
         follow: true,
         'max-video-preview': -1,
-        'max-image-preview': 'large',
+        'max-image-preview': 'large' as const,
         'max-snippet': -1,
       },
     },
