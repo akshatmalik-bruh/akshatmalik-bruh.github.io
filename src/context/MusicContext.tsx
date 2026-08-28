@@ -85,13 +85,14 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
       .catch(() => {});
   }, [fadeInAudio, startSpin]);
 
+  const hasTriggeredRef = useRef<boolean>(false);
+
   useEffect(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio('/assets/OneMoreLight.mp3');
       audioRef.current.loop = true;
       audioRef.current.volume = 0;
 
-      // Fallback if local bg-music.mp3 is missing
       audioRef.current.addEventListener('error', () => {
         if (audioRef.current) {
           audioRef.current.src =
@@ -101,6 +102,8 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     }
 
     const handleAutoPlay = () => {
+      if (hasTriggeredRef.current) return;
+      hasTriggeredRef.current = true;
       playWithFadeIn();
       window.removeEventListener('click', handleAutoPlay);
       window.removeEventListener('keydown', handleAutoPlay);
@@ -115,8 +118,6 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
     window.addEventListener('touchstart', handleAutoPlay, { passive: true });
     window.addEventListener('touchend', handleAutoPlay, { passive: true });
 
-    playWithFadeIn();
-
     return () => {
       window.removeEventListener('click', handleAutoPlay);
       window.removeEventListener('keydown', handleAutoPlay);
@@ -124,7 +125,8 @@ export function MusicProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener('touchstart', handleAutoPlay);
       window.removeEventListener('touchend', handleAutoPlay);
     };
-  }, [playWithFadeIn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const stopSpinGracefully = useCallback(() => {
     if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
