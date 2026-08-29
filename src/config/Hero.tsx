@@ -24,7 +24,7 @@ export const heroConfig = {
   avatar: '/assets/logo.jpeg',
   subtitle: 'A Full Stack & GenAI Developer and an Open Source Contributor.',
   tagline:
-    'Designing scalable backends, Retrieval-Augmented Generation (RAG) pipelines, MCP servers, and autonomous agentic workflows.',
+    'Designing scalable backends, Retrieval-Augmented Generation (RAG) pipelines, MCP servers, and AI agentic workflows.',
   email: 'akshatf8lmalik@gmail.com',
 
   skills: [

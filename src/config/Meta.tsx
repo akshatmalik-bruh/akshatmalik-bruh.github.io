@@ -12,7 +12,7 @@ export const siteConfig = {
   name: 'Akshat Malik',
   title: 'Akshat Malik | Full Stack GenAI Engineer',
   description:
-    'Full Stack AI Engineer passionate about designing developer workflows, orchestrating autonomous agent teams, and building scalable software systems.',
+    'Full Stack AI Engineer passionate about designing developer workflows, orchestrating agent workflows, and building scalable software systems.',
   url: process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
   ogImage: '/assets/logo.jpeg',
   author: {
