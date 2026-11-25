@@ -41,7 +41,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'DEAD CODE • ANNOTATIONS • AST',
   },
   {
-    title: 'fix(get_answer): completeness scope gate for truncated symbol bodies',
+    title:
+      'fix(get_answer): completeness scope gate for truncated symbol bodies',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1445',
@@ -51,7 +52,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'RAG • AI SYMBOLS • COMPLETENESS',
   },
   {
-    title: 'fix(dead-code): indicate hidden low-confidence findings in CLI output',
+    title:
+      'fix(dead-code): indicate hidden low-confidence findings in CLI output',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1434',
@@ -71,7 +73,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'SECURITY • WEBHOOKS • AUTH',
   },
   {
-    title: 'fix(mcp): add explicit --host control and security warning for network transports',
+    title:
+      'fix(mcp): add explicit --host control and security warning for network transports',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1406',
@@ -101,7 +104,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'EMBEDDINGS • VECTOR SEARCH • RAG',
   },
   {
-    title: 'fix(docker): add .gitattributes to enforce LF line endings for shell scripts',
+    title:
+      'fix(docker): add .gitattributes to enforce LF line endings for shell scripts',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1270',
@@ -111,7 +115,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'DOCKER • GITATTRIBUTES • DEPLOYMENT',
   },
   {
-    title: 'fix(docker): use node:20-bookworm-slim builder for glibc compatibility',
+    title:
+      'fix(docker): use node:20-bookworm-slim builder for glibc compatibility',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1268',
@@ -131,7 +136,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'DOCKER • STORAGE • PERMISSIONS',
   },
   {
-    title: 'fix(ingestion): filter HTML intrinsic elements from JSX component call targets',
+    title:
+      'fix(ingestion): filter HTML intrinsic elements from JSX component call targets',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1217',
@@ -141,7 +147,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'INGESTION • AST • REACT',
   },
   {
-    title: 'fix(ingestion): extract unparenthesized single-parameter arrow functions in JS/TS',
+    title:
+      'fix(ingestion): extract unparenthesized single-parameter arrow functions in JS/TS',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1215',
@@ -151,7 +158,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'PARSER • AST • JAVASCRIPT',
   },
   {
-    title: 'fix(server): hold strong references to fire-and-forget asyncio tasks',
+    title:
+      'fix(server): hold strong references to fire-and-forget asyncio tasks',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1155',
@@ -171,7 +179,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'TESTING • MCP WORKSPACE',
   },
   {
-    title: 'fix(dead-code): remove duplicate operator* in C++ contract-method set',
+    title:
+      'fix(dead-code): remove duplicate operator* in C++ contract-method set',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1153',
@@ -181,7 +190,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'C++ • STATIC ANALYSIS • AST',
   },
   {
-    title: 'fix(dead-code): use dict.get() for git metadata in zombie package detector',
+    title:
+      'fix(dead-code): use dict.get() for git metadata in zombie package detector',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1128',
@@ -191,7 +201,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'PYTHON • DEFENSIVE CODING',
   },
   {
-    title: 'fix(cli): surface page generation failures and resume hint on init completion',
+    title:
+      'fix(cli): surface page generation failures and resume hint on init completion',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1098',
@@ -201,7 +212,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'CLI • ERROR HANDLING',
   },
   {
-    title: 'fix(dead-code): align default min_confidence floor to RISK_CAP_CONFIDENCE',
+    title:
+      'fix(dead-code): align default min_confidence floor to RISK_CAP_CONFIDENCE',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1087',
@@ -221,7 +233,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'FRONTEND • UI • REACT',
   },
   {
-    title: 'fix(dead-code): evaluate top-level exported const literals as unused exports in TS/JS',
+    title:
+      'fix(dead-code): evaluate top-level exported const literals as unused exports in TS/JS',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #1065',
@@ -241,7 +254,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     tech: 'UI / UX • TABBED ARCHITECTURE',
   },
   {
-    title: 'feat(parser): add adaptive TSX grammar fallback for .ts files containing JSX',
+    title:
+      'feat(parser): add adaptive TSX grammar fallback for .ts files containing JSX',
     repo: 'repowise-dev/repowise',
     logo: 'https://github.com/repowise-dev.png',
     prNum: 'PR #967',
@@ -276,28 +290,30 @@ export const openSourceContributions: OpenSourceContribution[] = [
     title: 'feat(bettercontact): add BetterContact integration plugin',
     repo: 'corsairdev/corsair',
     logo: 'https://github.com/corsairdev.png',
-    prNum: 'PR #492',
-    link: 'https://github.com/corsairdev/corsair/pull/492',
+    prNum: 'PR #1099',
+    link: 'https://github.com/corsairdev/corsair/pull/1099',
     description:
       'Engineered complete BetterContact integration plugin with webhooks, contacts management, and token refresh handling.',
     tech: 'PLUGINS • INTEGRATIONS • TYPESCRIPT',
   },
   {
-    title: 'feat(twochat): add 2Chat plugin (contacts, account usage, webhooks)',
+    title:
+      'feat(twochat): add 2Chat plugin (contacts, account usage, webhooks)',
     repo: 'corsairdev/corsair',
     logo: 'https://github.com/corsairdev.png',
-    prNum: 'PR #489',
-    link: 'https://github.com/corsairdev/corsair/pull/489',
+    prNum: 'PR #745',
+    link: 'https://github.com/corsairdev/corsair/pull/745',
     description:
       'Developed end-to-end 2Chat integration supporting contacts sync, real-time account usage tracking, and webhook triggers.',
     tech: 'PLUGINS • WEBHOOKS • API',
   },
   {
-    title: 'fix(studio): add accessible labels to database search and sort direction toggle',
+    title:
+      'fix(studio): add accessible labels to database search and sort direction toggle',
     repo: 'corsairdev/corsair',
     logo: 'https://github.com/corsairdev.png',
-    prNum: 'PR #485',
-    link: 'https://github.com/corsairdev/corsair/pull/485',
+    prNum: 'PR #740',
+    link: 'https://github.com/corsairdev/corsair/pull/740',
     description:
       'Added accessible aria-label attributes to database search controls and sort direction toggle buttons.',
     tech: 'ACCESSIBILITY • UI • REACT',
@@ -306,8 +322,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
     title: 'refactor(figma): remove unused example webhook file',
     repo: 'corsairdev/corsair',
     logo: 'https://github.com/corsairdev.png',
-    prNum: 'PR #482',
-    link: 'https://github.com/corsairdev/corsair/pull/482',
+    prNum: 'PR #739',
+    link: 'https://github.com/corsairdev/corsair/pull/739',
     description:
       'Cleaned up legacy unused example webhook files in figma integration module to streamline package footprint.',
     tech: 'CLEAN CODE • INTEGRATIONS',
@@ -316,28 +332,30 @@ export const openSourceContributions: OpenSourceContribution[] = [
     title: 'fix(oss): add aria-label to search input',
     repo: 'corsairdev/corsair',
     logo: 'https://github.com/corsairdev.png',
-    prNum: 'PR #478',
-    link: 'https://github.com/corsairdev/corsair/pull/478',
+    prNum: 'PR #738',
+    link: 'https://github.com/corsairdev/corsair/pull/738',
     description:
       'Fixed screen reader accessibility by adding descriptive aria-labels to open source global search inputs.',
     tech: 'ACCESSIBILITY • UI',
   },
   {
-    title: 'fix(onedrive): use constant-time comparison for clientState security validation',
+    title:
+      'fix(onedrive): use constant-time comparison for clientState security validation',
     repo: 'corsairdev/corsair',
     logo: 'https://github.com/corsairdev.png',
-    prNum: 'PR #475',
-    link: 'https://github.com/corsairdev/corsair/pull/475',
+    prNum: 'PR #732',
+    link: 'https://github.com/corsairdev/corsair/pull/732',
     description:
       'Implemented timing-attack safe constant-time comparisons for OAuth clientState payload verification.',
     tech: 'SECURITY • OAUTH • CRYPTO',
   },
   {
-    title: 'fix(jira): sanitize trailing slashes in cloudUrl to prevent double-slash HTTP paths',
+    title:
+      'fix(jira): sanitize trailing slashes in cloudUrl to prevent double-slash HTTP paths',
     repo: 'corsairdev/corsair',
     logo: 'https://github.com/corsairdev.png',
-    prNum: 'PR #468',
-    link: 'https://github.com/corsairdev/corsair/pull/468',
+    prNum: 'PR #503',
+    link: 'https://github.com/corsairdev/corsair/pull/503',
     description:
       'Sanitized URL path normalization routines to eliminate double-slash formatting glitches in Jira API integrations.',
     tech: 'API ROUTING • SANITIZATION',
@@ -345,7 +363,8 @@ export const openSourceContributions: OpenSourceContribution[] = [
 
   // Better Auth PRs
   {
-    title: 'fix(cookies): tighten CookieAttributes index signature type (#10441)',
+    title:
+      'fix(cookies): tighten CookieAttributes index signature type (#10441)',
     repo: 'better-auth/better-auth',
     logo: 'https://github.com/better-auth.png',
     prNum: 'PR #10442',
