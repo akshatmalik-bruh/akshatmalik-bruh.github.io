@@ -10,7 +10,7 @@ import ArrowUpRight from '../svgs/ArrowUpRight';
 import { Button } from '../ui/button';
 
 export default function OpenSourceSection() {
-  const [mergedCount, setMergedCount] = useState<number>(36);
+  const [mergedCount, setMergedCount] = useState<number>(80);
 
   useEffect(() => {
     async function fetchPRCount() {
@@ -44,11 +44,19 @@ export default function OpenSourceSection() {
     {
       name: 'corsairdev/corsair',
       logo: 'https://github.com/corsairdev.png',
-      description:
-        'Unified integration engine & API orchestration plugins',
+      description: 'Unified integration engine & API orchestration plugins',
       prCount: '8+ Merged PRs',
       anchor: '/open-source#corsair',
       tech: 'PLUGINS • INTEGRATIONS • OAUTH • API',
+    },
+    {
+      name: 'tabloy/keygate',
+      logo: 'https://github.com/tabloy.png',
+      description:
+        'Open-source software license management & self-hosted monetization engine',
+      prCount: '5+ Merged PRs',
+      anchor: '/open-source#keygate',
+      tech: 'GO • SQL • REACT • API SECURITY',
     },
     {
       name: 'better-auth/better-auth',
@@ -65,8 +73,9 @@ export default function OpenSourceSection() {
     <Container id="open-source" className="mt-20">
       <div className="flex flex-col gap-1">
         <SectionHeading subHeading="Featured" heading="Open Source" />
-        <p className="text-sm font-medium text-secondary">
-          <span className="font-bold text-primary">{mergedCount}+</span> Merged Pull Requests across open source repositories
+        <p className="text-secondary text-sm font-medium">
+          <span className="text-primary font-bold">{mergedCount}+</span> Merged
+          Pull Requests across open source repositories
         </p>
       </div>
 
@@ -93,16 +102,16 @@ export default function OpenSourceSection() {
                 </div>
                 <div className="flex flex-col gap-0.5">
                   <div className="flex items-center gap-2">
-                    <h3 className="font-mono text-base font-bold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-foreground group-hover:text-primary font-mono text-base font-bold transition-colors">
                       {repo.name}
                     </h3>
-                    <ArrowUpRight className="size-3.5 fill-current text-muted-foreground opacity-60 transition-opacity group-hover:opacity-100" />
+                    <ArrowUpRight className="text-muted-foreground size-3.5 fill-current opacity-60 transition-opacity group-hover:opacity-100" />
                   </div>
-                  <p className="text-xs leading-relaxed text-muted-foreground">
+                  <p className="text-muted-foreground text-xs leading-relaxed">
                     {repo.description}
                   </p>
                   <div className="mt-1">
-                    <span className="font-mono text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
+                    <span className="text-muted-foreground font-mono text-[10px] font-semibold tracking-wider uppercase">
                       {repo.tech}
                     </span>
                   </div>

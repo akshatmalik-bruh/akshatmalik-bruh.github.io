@@ -75,8 +75,14 @@ export const pageMetadata: Record<string, PageMeta> = {
   '/open-source': {
     title: 'Open Source Contributions - Akshat Malik',
     description:
-      'Merged PRs and open source contributions across repowise-dev, better-auth, corsairdev, and more.',
-    keywords: ['open source', 'contributions', 'pull requests', 'github'],
+      'Merged PRs and open source contributions across repowise-dev, tabloy, corsairdev, better-auth, and more.',
+    keywords: [
+      'open source',
+      'contributions',
+      'pull requests',
+      'github',
+      'keygate',
+    ],
     ogImage: '/assets/logo.jpeg',
     twitterCard: 'summary_large_image',
   },

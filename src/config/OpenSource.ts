@@ -373,4 +373,58 @@ export const openSourceContributions: OpenSourceContribution[] = [
       'Enforced strict index signature typing for CookieAttributes to improve type-safety across session cookies.',
     tech: 'AUTHENTICATION • TYPESCRIPT',
   },
+
+  // Keygate PRs (tabloy/keygate)
+  {
+    title:
+      'fix(store): return deletedOne in DeleteWebhook to prevent phantom audit logs',
+    repo: 'tabloy/keygate',
+    logo: 'https://github.com/tabloy.png',
+    prNum: 'PR #209',
+    link: 'https://github.com/tabloy/keygate/pull/209',
+    description:
+      'Wrapped DeleteWebhook in deletedOne to return sql.ErrNoRows on missing webhooks, preventing phantom audit logs and returning 404 Not Found.',
+    tech: 'GO • SQL • AUDIT LOGGING • WEBHOOKS',
+  },
+  {
+    title: 'test: fix slug length boundary test cases',
+    repo: 'tabloy/keygate',
+    logo: 'https://github.com/tabloy.png',
+    prNum: 'PR #199',
+    link: 'https://github.com/tabloy/keygate/pull/199',
+    description:
+      'Fixed boundary testing for slug validation in pkg/apperr/validate_test.go, verifying max 100-character acceptance and 101-character rejection.',
+    tech: 'GO • UNIT TESTING • BOUNDARY VALIDATION',
+  },
+  {
+    title:
+      'web: consistently format perpetual license expiry across portal and admin',
+    repo: 'tabloy/keygate',
+    logo: 'https://github.com/tabloy.png',
+    prNum: 'PR #187',
+    link: 'https://github.com/tabloy/keygate/pull/187',
+    description:
+      'Introduced centralized formatLicenseExpiry helper to render "Perpetual" instead of placeholder dashes for lifetime licenses across portal and admin.',
+    tech: 'REACT • TYPESCRIPT • UI / UX • I18N',
+  },
+  {
+    title: 'web: align empty state colSpan in products table',
+    repo: 'tabloy/keygate',
+    logo: 'https://github.com/tabloy.png',
+    prNum: 'PR #185',
+    link: 'https://github.com/tabloy/keygate/pull/185',
+    description:
+      'Corrected colSpan={6} alignment on the DataTableEmpty row in the admin products table to cleanly span all table columns.',
+    tech: 'REACT • FRONTEND • UI ALIGNMENT',
+  },
+  {
+    title: 'test: add test coverage for malformed idempotency keys',
+    repo: 'tabloy/keygate',
+    logo: 'https://github.com/tabloy.png',
+    prNum: 'PR #146',
+    link: 'https://github.com/tabloy/keygate/pull/146',
+    description:
+      'Added unit and middleware test suites verifying rejection of oversized (>256 chars), null-byte, or CRLF-injected Idempotency-Key headers with HTTP 400.',
+    tech: 'GO • MIDDLEWARE • API SECURITY • TESTING',
+  },
 ];

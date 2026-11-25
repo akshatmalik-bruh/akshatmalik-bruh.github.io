@@ -22,12 +22,12 @@ async function getMergedPRCount(): Promise<number> {
     );
     if (res.ok) {
       const data = await res.json();
-      return typeof data.total_count === 'number' ? data.total_count : 36;
+      return typeof data.total_count === 'number' ? data.total_count : 80;
     }
   } catch (err) {
     console.error('Error fetching PR count for page:', err);
   }
-  return 36;
+  return 80;
 }
 
 export default async function OpenSourcePage() {
@@ -49,11 +49,21 @@ export default async function OpenSourcePage() {
       id: 'corsair',
       name: 'corsairdev/corsair',
       logo: 'https://github.com/corsairdev.png',
-      description:
-        'Unified integration engine & API orchestration plugins',
+      description: 'Unified integration engine & API orchestration plugins',
       count: '8+ Merged PRs',
       contributions: openSourceContributions.filter(
         (c) => c.repo === 'corsairdev/corsair',
+      ),
+    },
+    {
+      id: 'keygate',
+      name: 'tabloy/keygate',
+      logo: 'https://github.com/tabloy.png',
+      description:
+        'Open-source software license management & self-hosted monetization engine',
+      count: '5+ Merged PRs',
+      contributions: openSourceContributions.filter(
+        (c) => c.repo === 'tabloy/keygate',
       ),
     },
     {
@@ -72,8 +82,9 @@ export default async function OpenSourcePage() {
   return (
     <Container className="py-16">
       <SectionHeading subHeading="Contributions" heading="Open Source" />
-      <p className="mt-2 text-sm font-medium text-secondary">
-        <span className="font-bold text-primary">{mergedCount}+</span> Merged Pull Requests across open source repositories.
+      <p className="text-secondary mt-2 text-sm font-medium">
+        <span className="text-primary font-bold">{mergedCount}+</span> Merged
+        Pull Requests across open source repositories.
       </p>
 
       {/* Featured Repos Showcase */}
